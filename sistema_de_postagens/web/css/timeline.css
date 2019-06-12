@@ -1,0 +1,44 @@
+.timeline {
+    max-width: 700px;
+}
+
+.post {
+    margin: 10px;
+    width: 100%;
+}
+
+.avatar {
+    display: flex;
+}
+
+.avatar img {
+    border-radius: 50px;
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+}
+.avatar .info {
+    margin: 15px;
+}
+.timeline .info p,
+.avatar .info span {
+    margin: 0 5px !important;
+}
+.timeline .info span {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.timeline .comentario {
+    margin: 10px 50px 5px;
+}
+
+.timeline .post .botao-excuir {
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
+
+.comentarios-lista {
+    margin-left: 15px;
+}
