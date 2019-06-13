@@ -1,20 +1,24 @@
 package br.uff.ic.devweb;
 
 public class CommentBean {
-
-    private int id;
     private String text;
 
     // user data
     private String avatar;
     private String name;
     private String nickname;
+    private int id;
+    private int postId;
 
     /* get */
-    public int getId() {
+    
+    public int getId(){
         return this.id;
     }
-
+    
+    public int getPostId(){
+        return this.postId;
+    }
     public String getText() {
         return this.text;
     }
@@ -32,10 +36,6 @@ public class CommentBean {
     }
 
     /* set */
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setText(String text) {
         this.text = text;
     }
@@ -50,6 +50,13 @@ public class CommentBean {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+    public int setId(int id){
+        return this.id=id;
+    }
+    
+    public int getPostId(int postId){
+        return this.postId=postId;
     }
 
 }
