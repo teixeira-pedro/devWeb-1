@@ -14,30 +14,52 @@ public class PostsController extends HttpServlet {
 
     public PostsController() {
         this.postsDao = new PostsDao();
+        /* Instancia um DAO de post
+            nesta classe
+        */
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*
+        trata as requests
+        
+        */
+        System.out.println("Tratando Requests...");
+        
         String forward = "";
         String action = "";
         try {
             action = request.getParameter("action");
+
+            System.out.println("Pegou a action com sucesso :"+(String)action);
         } catch (Exception e) {
             System.out.println("sem action");
         }
 
         if (action == null || action.equals("")) {
+            //Se não tem ação , vai passar pra frente (pra pagina da TIMELINE.jsp)
+            
+            System.out.println("Se não tem ação , vai passar pra frente (pra pagina da "+LIST_POSTS+")");
             forward = LIST_POSTS;
+            
             System.out.println("entrou no action");
-            request.setAttribute("posts", this.postsDao.getPosts());;
+            request.setAttribute("posts", this.postsDao.getPosts());
+            
+            System.out.println("pega os posts pelo dao aqui instanciado ");
+            System.out.println("e salva como atributo \'posts\' na request ");
+            
         } else if (action.equalsIgnoreCase("delete")) {
+            System.out.println("caso a ação seja \'apagar\' , pega o parametro \'id\' ");
             int id = Integer.parseInt(request.getParameter("id"));
+            
 //            dao.deleteUser(id);
             forward = LIST_POSTS;
 //            request.setAttribute("postsDao", dao.getAllUsers()); ;
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
+        System.out.println("despachando  request para : "+LIST_POSTS);
         view.forward(request, response);
     }
 
