@@ -1,6 +1,7 @@
 package br.uff.ic.devweb;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,18 +45,31 @@ public class PostsController extends HttpServlet {
             forward = LIST_POSTS;
             
             System.out.println("entrou no action");
-            request.setAttribute("posts", this.postsDao.getPosts());
+            List<PostBean> posts = this.postsDao.getPosts("primeiro_user");
+            for (PostBean post : posts) {
+                System.out.println(post.getText());
+            }
+            request.setAttribute("posts", posts);
             
             System.out.println("pega os posts pelo dao aqui instanciado ");
             System.out.println("e salva como atributo \'posts\' na request ");
             
+        } else if (action.equalsIgnoreCase("create")) {
+            System.out.println("caso a ação seja \'criar\' , pega o parametro \'post\' ");
+            PostBean post = (PostBean) request.getAttribute("post");
+            
+            this.postsDao.createPost(post);
+            forward = LIST_POSTS;
+            request.setAttribute("posts", this.postsDao.oldGetPosts()); ;
+            
         } else if (action.equalsIgnoreCase("delete")) {
             System.out.println("caso a ação seja \'apagar\' , pega o parametro \'id\' ");
             int id = Integer.parseInt(request.getParameter("id"));
+            PostBean post = (PostBean) request.getAttribute("post");
             
-//            dao.deleteUser(id);
+            this.postsDao.deletePost(post);
             forward = LIST_POSTS;
-//            request.setAttribute("postsDao", dao.getAllUsers()); ;
+            request.setAttribute("posts", this.postsDao.oldGetPosts()); ;
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);

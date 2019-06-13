@@ -16,137 +16,131 @@ import java.sql.Statement;
  * @author pedroteixeira
  */
 class UsersDao {
-    
-    
-    
-    public static UserBean getUsuarioId(String nickname) {
-        UserBean resp ;
-        Connection conexao = null;
-        try{
-            
 
-            
-            Statement st ;
+    private static Connection conexao;
+
+    public static UserBean getUsuarioId(String NICKNAME) {
+        UserBean resp;
+        try {
+
+            conexao = Database.getConnection();
+            Statement st;
             PreparedStatement qry;
-            qry = conexao.prepareStatement("select * from Usr where nickname = ?;");
-            qry.setString(1, nickname);
+            System.out.println("NICKNAME passado: " + NICKNAME);
+            qry = conexao.prepareStatement("select * from USR where NICKNAME = ?");
+            qry.setString(1, NICKNAME);
 
-            ResultSet result=qry.executeQuery();
-            if (result.next()){//achou
-                System.out.println("achou user com nick "+nickname);
-                String nome=result.getString("nome");
-                String senha=result.getString("senha");
-                String avatar=result.getString("avatar");
+            ResultSet result = qry.executeQuery();
+            if (result.next()) {//achou
+                System.out.println("achou user com nick " + NICKNAME);
+                String nome = result.getString("NAME");
+                String PASSWORD = result.getString("PASSWORD");
+                String avatar = result.getString("AVATAR");
                 resp = new UserBean();
                 resp.setAvatar(avatar);
                 resp.setName(nome);
-                resp.setNickname(nickname);
-                resp.setSenha(senha);
+                resp.setNickname(NICKNAME);
+                resp.setSenha(PASSWORD);
                 return resp;
-            }else{
+            } else {
                 return null;
             }
-        }catch (Exception e){
-            System.out.println("Xibu!!! ao executar consulta pra recuperar user"+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Xibu!!! ao executar consulta pra recuperar user" + e.getMessage());
             return null;
+        } finally {
+            Database.close(conexao);
         }
-        
+
     }
-    
-    
 
-    public static void addUsuario(String nickname,String senha,String avatar,String nome){
-        UserBean resp ;
+    public static void addUsuario(String NICKNAME, String PASSWORD, String avatar, String nome) {
+        UserBean resp;
         Connection conexao = null;
-        try{
-            
+        try {
 
-            
-            Statement st ;
+            Statement st;
             PreparedStatement qry;
-            qry = conexao.prepareStatement("select * from Usr where nickname = ?;");
-            qry.setString(1, nickname);
+            qry = conexao.prepareStatement("select * from USR where NICKNAME = ?;");
+            qry.setString(1, NICKNAME);
 
-            ResultSet result=qry.executeQuery();
-            if (result.next()){//achou
+            ResultSet result = qry.executeQuery();
+            if (result.next()) {//achou
                 System.out.println("user ja existe");
                 return;
-            }else{
+            } else {
                 System.out.println("adicionando novo user");
-                qry=conexao.prepareStatement("insert into usr(nickname,senha,avatar,nome) values (?,?,?,?);");
-                qry.setString(1, nickname);
-                qry.setString(2,senha);
-                qry.setString(3,avatar);
-                qry.setString(4,nome);
+                qry = conexao.prepareStatement("insert into USR(NICKNAME,PASSWORD,AVATAR,NAME) values (?,?,?,?);");
+                qry.setString(1, NICKNAME);
+                qry.setString(2, PASSWORD);
+                qry.setString(3, avatar);
+                qry.setString(4, nome);
                 qry.executeUpdate();
-            
+
             }
-            
-        }catch (SQLException e){
-            System.out.println("xibu ao inserir dados de user "+e.getMessage());
+
+        } catch (SQLException e) {
+            System.out.println("xibu ao inserir dados de user " + e.getMessage());
         }
-        
+
     }
-    public static void editUsuario(String nickname,String senha,String avatar,String nome){
-        UserBean resp ;
-        Connection conexao = null;
-        try{
-            
 
-            
-            Statement st ;
+    public static void editUsuario(String NICKNAME, String PASSWORD, String avatar, String nome) {
+        UserBean resp;
+        Connection conexao = Database.getConnection();
+        try {
+
+            Statement st;
             PreparedStatement qry;
-            qry = conexao.prepareStatement("select * from Usr where nickname = ?;");
-            qry.setString(1, nickname);
+            qry = conexao.prepareStatement("select * from USR where NICKNAME = ?;");
+            qry.setString(1, NICKNAME);
 
-            ResultSet result=qry.executeQuery();
-            if (! result.next()){//nao achou
+            ResultSet result = qry.executeQuery();
+            if (!result.next()) {//nao achou
                 System.out.println("user nao existe");
                 return;
-            }else{
+            } else {
                 System.out.println("editando user");
-                qry=conexao.prepareStatement("update usr set senha=? ,avatar=? ,nome=? ;");
-                qry.setString(1,senha);
-                qry.setString(2,avatar);
-                qry.setString(3,nome);
+                qry = conexao.prepareStatement("update USR set PASSWORD=? ,avatar=? ,nome=? ;");
+                qry.setString(1, PASSWORD);
+                qry.setString(2, avatar);
+                qry.setString(3, nome);
                 qry.executeUpdate();
-            
+
             }
-            
-        }catch (SQLException e){
-            System.out.println("xibu ao editar dados de user "+e.getMessage());
+
+        } catch (SQLException e) {
+            System.out.println("xibu ao editar dados de user " + e.getMessage());
         }
-        
+
     }
-    public static void deleteUsuario(String nickname){
-        UserBean resp ;
+
+    public static void deleteUsuario(String NICKNAME) {
+        UserBean resp;
         Connection conexao = null;
-        try{
-            
+        try {
 
-            
-            Statement st ;
+            Statement st;
             PreparedStatement qry;
-            qry = conexao.prepareStatement("select * from Usr where nickname = ?;");
-            qry.setString(1, nickname);
+            qry = conexao.prepareStatement("select * from USR where NICKNAME = ?;");
+            qry.setString(1, NICKNAME);
 
-            ResultSet result=qry.executeQuery();
-            if (! result.next()){//nao achou
+            ResultSet result = qry.executeQuery();
+            if (!result.next()) {//nao achou
                 System.out.println("user nao existe");
                 return;
-            }else{
+            } else {
                 System.out.println("apagando user");
-                qry=conexao.prepareStatement("delete from usr where nickname=? ;");
-                qry.setString(1,nickname);
+                qry = conexao.prepareStatement("delete from USR where NICKNAME=? ;");
+                qry.setString(1, NICKNAME);
                 qry.executeUpdate();
-            
+
             }
-            
-        }catch (SQLException e){
-            System.out.println("xibu ao apagar dados de user "+e.getMessage());
+
+        } catch (SQLException e) {
+            System.out.println("xibu ao apagar dados de user " + e.getMessage());
         }
-        
+
     }
 
-    
 }

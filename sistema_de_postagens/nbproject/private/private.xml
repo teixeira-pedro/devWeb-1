@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/br/uff/ic/devweb/PostsController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>53</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/pedroteixeira/Desktop/devweb/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/PostsDao.java</file>
-            <file>file:/Users/pedroteixeira/Desktop/devweb/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/PostsController.java</file>
-            <file>file:/Users/pedroteixeira/Desktop/devweb/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/PostBean.java</file>
+            <file>file:/C:/Users/fabri/Documents/NetBeansProjects/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/PostsController.java</file>
+            <file>file:/C:/Users/fabri/Documents/NetBeansProjects/devWeb/sistema_de_postagens/src/java/SQL/criarTabelas.sql</file>
+            <file>file:/C:/Users/fabri/Documents/NetBeansProjects/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/UsersDao.java</file>
+            <file>file:/C:/Users/fabri/Documents/NetBeansProjects/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/Database.java</file>
+            <file>file:/C:/Users/fabri/Documents/NetBeansProjects/devWeb/sistema_de_postagens/src/java/br/uff/ic/devweb/PostsDao.java</file>
+            <file>file:/C:/Users/fabri/Documents/NetBeansProjects/devWeb/sistema_de_postagens/web/timeline.jsp</file>
         </group>
     </open-files>
 </project-private>
