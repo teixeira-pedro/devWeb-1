@@ -1,11 +1,17 @@
 package br.uff.ic.devweb;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostsDao {
+    
+    private Database bd = new Database();
+    private Connection conexao = bd.getConnection();
 
     public List<PostBean> getPosts() {
+        
+        
         List<PostBean> posts = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             PostBean post = new PostBean();
