@@ -1,6 +1,8 @@
 package br.uff.ic.devweb;
 
 public class CommentBean {
+
+    private int id;
     private String text;
 
     // user data
@@ -9,6 +11,10 @@ public class CommentBean {
     private String nickname;
 
     /* get */
+    public int getId() {
+        return this.id;
+    }
+
     public String getText() {
         return this.text;
     }
@@ -26,6 +32,10 @@ public class CommentBean {
     }
 
     /* set */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setText(String text) {
         this.text = text;
     }

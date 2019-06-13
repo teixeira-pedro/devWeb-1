@@ -53,9 +53,9 @@ public class PostsController extends HttpServlet {
             System.out.println("caso a ação seja \'apagar\' , pega o parametro \'id\' ");
             int id = Integer.parseInt(request.getParameter("id"));
             
-//            dao.deleteUser(id);
+            postsDao.deletePost(id);
             forward = LIST_POSTS;
-//            request.setAttribute("postsDao", dao.getAllUsers()); ;
+            request.setAttribute("posts", postsDao.getPosts()); ;
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);

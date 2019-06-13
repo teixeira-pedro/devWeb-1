@@ -51,7 +51,7 @@
                         </div>
                         <% if (post.getCanDelete()) { %>
                         <div class="float-right botao-excuir">
-                            <button type="button" class="btn btn-outline-danger">Excluir</button>
+                            <a href="PostsController?action=delete&id=<%=  Integer.toString(post.getId()) %>" class="btn btn-outline-danger">Excluir</a>
                         </div>
                         <% }%>
                         <h5 class="card-title"><%= post.getTitle()%></h5>
